@@ -53,15 +53,15 @@ const styles = StyleSheet.create({
   },
 
   logoText: {
-    fontSize: 40,
+    fontSize: 30,
     color: "black",
     fontWeight: "bold",
     position: "absolute",
     top: 170,
-    left: 90,
+    left: 110,
     backgroundColor: "greenyellow",
-    height: 70,
-    width: 250,
+    height: 60,
+    width: 200,
     padding: 10,
   },
 });

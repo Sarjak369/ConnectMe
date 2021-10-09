@@ -1,117 +1,195 @@
-import React, { Component } from "react";
-
+import React, { useState } from "react";
 import {
-  Keyboard,
+  StyleSheet,
   Text,
   View,
   TextInput,
-  TouchableWithoutFeedback,
+  TouchableOpacity,
+  navigation,
   Alert,
-  KeyboardAvoidingView,
-  StyleSheet,
+  ScrollView,
 } from "react-native";
-import { Button } from "react-native-elements";
+import { CheckBox } from "react-native-elements";
 
-const appId = "1047121222092614";
-
-export default class SignUpScreen extends Component {
-  render() {
-    return (
-      <KeyboardAvoidingView style={styles.containerView} behavior="padding">
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.loginScreenContainer}>
-            <View style={styles.loginFormView}>
-              <Text style={styles.logoText}>Connect Me</Text>
-              <TextInput
-                placeholder="Username"
-                placeholderColor="#c4c3cb"
-                style={styles.loginFormTextInput}
-              />
-              <TextInput
-                placeholder="Password"
-                placeholderColor="#c4c3cb"
-                style={styles.loginFormTextInput}
-                secureTextEntry={true}
-              />
-              <Button
-                buttonStyle={styles.loginButton}
-                onPress={() => this.onLoginPress()}
-                title="Login"
-              />
-              <Button
-                buttonStyle={styles.fbLoginButton}
-                onPress={() => this.onFbLoginPress()}
-                title="Login with Facebook"
-                color="#3897f1"
-              />
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
-    );
+export default class SignUpScreen extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      imgURL: "",
+      userGender: "",
+      userAge: "",
+      userMovieGenre: "",
+      userUniversity: "",
+      userCity: "",
+      userJobTitle: "",
+      userIsStudent: false,
+      userHobbies: "",
+    };
   }
 
-  componentDidMount() {}
+  render() {
+    return (
+      <ScrollView>
+        <View style={styles.container}>
+          <Text style={styles.logo}>Connect Me</Text>
+          <View style={styles.inputView}>
+            <TextInput
+              style={styles.inputText}
+              placeholder="Email..."
+              // placeholderTextColor="#003f5c"
+              placeholderTextColor="white"
+              onChangeText={(text) => this.setState({ email: text })}
+            />
+          </View>
 
-  componentWillUnmount() {}
+          <View style={styles.inputView}>
+            <TextInput
+              secureTextEntry
+              style={styles.inputText}
+              placeholder="Password..."
+              // placeholderTextColor="#003f5c"
+              placeholderTextColor="white"
+              onChangeText={(text) => this.setState({ password: text })}
+            />
+          </View>
+          <View style={styles.inputView}>
+            <TextInput
+              style={styles.inputText}
+              placeholder="Enter image URL..."
+              // placeholderTextColor="#003f5c"
+              placeholderTextColor="white"
+              onChangeText={(text) => this.setState({ imgURL: text })}
+            />
+          </View>
+          <View style={styles.inputView}>
+            <TextInput
+              style={styles.inputText}
+              placeholder="Enter Age..."
+              // placeholderTextColor="#003f5c"
+              placeholderTextColor="white"
+              onChangeText={(text) => this.setState({ userAge: text })}
+            />
+          </View>
+          <View style={styles.inputView}>
+            <TextInput
+              style={styles.inputText}
+              placeholder="Enter Gender..."
+              // placeholderTextColor="#003f5c"
+              placeholderTextColor="white"
+              onChangeText={(text) => this.setState({ userGender: text })}
+            />
+          </View>
+          <View style={styles.inputView}>
+            <TextInput
+              style={styles.inputText}
+              placeholder="Enter Movie Genre..."
+              // placeholderTextColor="#003f5c"
+              placeholderTextColor="white"
+              onChangeText={(text) => this.setState({ userMovieGenre: text })}
+            />
+          </View>
+          <View style={styles.inputView}>
+            <TextInput
+              style={styles.inputText}
+              placeholder="Enter City..."
+              // placeholderTextColor="#003f5c"
+              placeholderTextColor="white"
+              onChangeText={(text) => this.setState({ userCity: text })}
+            />
+          </View>
+          <View style={styles.inputView}>
+            <TextInput
+              style={styles.inputText}
+              placeholder="Enter Job Title..."
+              // placeholderTextColor="#003f5c"
+              placeholderTextColor="white"
+              onChangeText={(text) => this.setState({ userJobTitle: text })}
+            />
+          </View>
 
-  onLoginPress() {}
+          <View style={styles.inputText}>
+            <CheckBox
+              style={styles.checkBox}
+              checked={false}
+              onPress={() =>
+                this.setState({
+                  userIsStudent: !this.state.userIsStudent,
+                })
+              }
+              checked={this.state.userIsStudent}
+              title="Are you a Student?"
+            />
+            {/* <Text>Is Student?</Text> */}
+            {/* <Text>
+              User is Student: {this.state.userIsStudent ? "👍" : "👎"}
+            </Text> */}
+          </View>
 
-  async onFbLoginPress() {
-    const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(
-      appId,
-      {
-        permissions: ["public_profile", "email"],
-      }
+          {/* <TouchableOpacity>
+            <Text style={styles.forgot}>Forgot Password?</Text>
+          </TouchableOpacity> */}
+          <TouchableOpacity
+            onPress={() =>
+              this.props.navigation.navigate("HobbiesSelectionScreen")
+            }
+            style={styles.loginBtn}>
+            <Text style={styles.loginText}>SIGN UP</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     );
-    if (type === "success") {
-      const response = await fetch(
-        `https://graph.facebook.com/me?access_token=${token}`
-      );
-      Alert.alert("Logged in!", `Hi ${(await response.json()).name}!`);
-    }
   }
 }
 
 const styles = StyleSheet.create({
-  containerView: {
+  container: {
     flex: 1,
+    backgroundColor: "#003f5c",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
   },
-  loginScreenContainer: {
-    flex: 1,
+  logo: {
+    fontWeight: "bold",
+    fontSize: 50,
+    color: "#fb5b5a",
+    marginBottom: 40,
   },
-  logoText: {
-    fontSize: 40,
-    fontWeight: "800",
-    marginTop: 150,
-    marginBottom: 30,
-    textAlign: "center",
+  inputView: {
+    width: "80%",
+    backgroundColor: "#465881",
+    borderRadius: 25,
+    height: 50,
+    marginBottom: 20,
+    justifyContent: "center",
+    padding: 20,
   },
-  loginFormView: {
-    flex: 1,
+  inputText: {
+    height: 50,
+    color: "white",
   },
-  loginFormTextInput: {
-    height: 43,
-    fontSize: 14,
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: "#eaeaea",
-    backgroundColor: "#fafafa",
-    paddingLeft: 10,
-    marginLeft: 15,
-    marginRight: 15,
-    marginTop: 5,
-    marginBottom: 5,
+  forgot: {
+    color: "white",
+    fontSize: 11,
   },
-  loginButton: {
-    backgroundColor: "#3897f1",
-    borderRadius: 5,
-    height: 45,
-    marginTop: 10,
+  loginBtn: {
+    width: "80%",
+    backgroundColor: "#fb5b5a",
+    borderRadius: 25,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 40,
+    marginBottom: 10,
   },
-  fbLoginButton: {
-    height: 45,
-    marginTop: 10,
-    backgroundColor: "transparent",
+  loginText: {
+    color: "white",
+  },
+  checkBox: {
+    height: 50,
+    width: 50,
+    alignSelf: "center",
   },
 });

@@ -9,6 +9,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import AddConnectionsScreen from "./screens/AddConnectionsScreen";
 import HomePageScreen from "./screens/HomePageScreen";
 import NotificationsScreen from "./screens/NotificationsScreen";
+import HobbiesSelectionScreen from "./screens/HobbiesSelectionScreen";
 
 const Stack = createStackNavigator();
 function App() {
@@ -25,6 +26,11 @@ function App() {
         <Stack.Screen
           name="NotificationsScreen"
           component={NotificationsScreen}
+        />
+        <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
+        <Stack.Screen
+          name="HobbiesSelectionScreen"
+          component={HobbiesSelectionScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
