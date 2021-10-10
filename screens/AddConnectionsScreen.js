@@ -7,17 +7,54 @@ import {
   Image,
   Animated,
   PanResponder,
+  TouchableOpacity,
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const SCREEN_WIDTH = Dimensions.get("window").width;
 import Icon from "react-native-vector-icons/Ionicons";
+import OthersProfileScreen from "./OthersProfileScreen";
 const Users = [
-  { id: "1", uri: require("../assets/1.png") },
-  { id: "2", uri: require("../assets/2.png") },
-  { id: "3", uri: require("../assets/3.png") },
-  { id: "4", uri: require("../assets/4.png") },
-  { id: "5", uri: require("../assets/5.png") },
+  {
+    id: "1",
+    name: "Jai Parmani",
+    email: "jaiparmani35@gmail.com",
+    age: "21",
+    gender: "Male",
+    city: "Mumbai",
+    job_title: "Tech Analyst",
+    movie_genre: "comedy",
+    isStudent: false,
+    university: "University of Mumbai",
+    Hobbies: "10000010101011010010100010",
+  },
+  {
+    id: "2",
+    name: "Sarjak Maniar",
+    email: "sarjakmaniar369@gmail.com",
+    age: "21",
+    gender: "Male",
+    city: "Mumbai",
+    job_title: "Student",
+    movie_genre: "comedy",
+    isStudent: true,
+    university: "University of Mumbai",
+    Hobbies: "01010010000011011010100010",
+  },
+  {
+    id: "3",
+    name: "Nitin Wankwani",
+    email: "nitinwankwani@gmail.com",
+    age: "21",
+    gender: "Male",
+    city: "Mumbai",
+    job_title: "Student",
+    isStudent: true,
+    movie_genre: "horror",
+    university: "University of Mumbai",
+    Hobbies: "00100100101001010100101001",
+  },
 ];
 
 export default class AddConnectionsScreen extends React.Component {
@@ -138,7 +175,6 @@ export default class AddConnectionsScreen extends React.Component {
                 LIKE
               </Text>
             </Animated.View>
-
             <Animated.View
               style={{
                 opacity: this.dislikeOpacity,
@@ -160,8 +196,7 @@ export default class AddConnectionsScreen extends React.Component {
                 NOPE
               </Text>
             </Animated.View>
-
-            <Image
+            {/* <Image
               style={{
                 flex: 1,
                 height: null,
@@ -170,7 +205,12 @@ export default class AddConnectionsScreen extends React.Component {
                 borderRadius: 20,
               }}
               source={item.uri}
-            />
+            /> */}
+            {/* <Text> {item.name} </Text> */}
+            {/* <MyProfileScreen name={item.name} /> */}
+            {/* <MyProfileScreen UserData={Users} /> */}
+
+            <OthersProfileScreen userData={item} />
           </Animated.View>
         );
       } else {
@@ -231,7 +271,7 @@ export default class AddConnectionsScreen extends React.Component {
               </Text>
             </Animated.View>
 
-            <Image
+            {/* <Image
               style={{
                 flex: 1,
                 height: null,
@@ -240,7 +280,9 @@ export default class AddConnectionsScreen extends React.Component {
                 borderRadius: 20,
               }}
               source={item.uri}
-            />
+            /> */}
+            {/* <Text> Hello </Text> */}
+            <OthersProfileScreen userData={item} />
           </Animated.View>
         );
       }
@@ -257,3 +299,74 @@ export default class AddConnectionsScreen extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    height: "100%",
+  },
+  header: {
+    // backgroundColor: "#00BFFF",
+    backgroundColor: "#003f5c",
+    height: 200,
+  },
+  avatar: {
+    width: 130,
+    height: 130,
+    borderRadius: 63,
+    borderWidth: 4,
+    borderColor: "white",
+    marginBottom: 10,
+    alignSelf: "center",
+    position: "absolute",
+    marginTop: 130,
+  },
+  name: {
+    fontSize: 22,
+    color: "#FFFFFF",
+    fontWeight: "600",
+  },
+  body: {
+    marginTop: 40,
+  },
+  bodyContent: {
+    flex: 1,
+    alignItems: "center",
+    padding: 30,
+    position: "absolute",
+    top: 25,
+  },
+  name: {
+    fontSize: 28,
+    // color: "#696969",
+    color: "#fb5b5a",
+    fontWeight: "600",
+  },
+  info: {
+    fontSize: 16,
+    color: "#00BFFF",
+    marginTop: 10,
+  },
+  description: {
+    fontSize: 16,
+    color: "#696969",
+    marginTop: 10,
+    textAlign: "center",
+  },
+  buttonContainer: {
+    marginTop: 40,
+    height: 45,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20,
+    width: 200,
+    borderRadius: 30,
+    // backgroundColor: "#00BFFF",
+    backgroundColor: "#003f5c",
+  },
+  buttonContainerText: {
+    color: "white",
+    fontSize: 17,
+  },
+});

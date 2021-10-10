@@ -10,6 +10,7 @@ import AddConnectionsScreen from "./screens/AddConnectionsScreen";
 import HomePageScreen from "./screens/HomePageScreen";
 import NotificationsScreen from "./screens/NotificationsScreen";
 import HobbiesSelectionScreen from "./screens/HobbiesSelectionScreen";
+import MyProfileScreen from "./screens/MyProfileScreen";
 
 const Stack = createStackNavigator();
 function App() {
@@ -32,6 +33,7 @@ function App() {
           name="HobbiesSelectionScreen"
           component={HobbiesSelectionScreen}
         />
+        <Stack.Screen name="MyProfileScreen" component={MyProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

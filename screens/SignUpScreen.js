@@ -109,9 +109,9 @@ export default class SignUpScreen extends React.Component {
             />
           </View>
 
-          <View style={styles.inputText}>
+          <View style={styles.inputTextCheckbox}>
             <CheckBox
-              style={styles.checkBox}
+              style={styles.checkBoxStyle}
               checked={false}
               onPress={() =>
                 this.setState({
@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
     fontSize: 50,
     color: "#fb5b5a",
     marginBottom: 40,
+    marginTop: 20,
   },
   inputView: {
     width: "80%",
@@ -182,14 +183,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 40,
-    marginBottom: 10,
+    marginBottom: 30,
   },
   loginText: {
     color: "white",
   },
-  checkBox: {
-    height: 50,
-    width: 50,
-    alignSelf: "center",
+
+  inputTextCheckbox: {
+    height: 60,
   },
 });
