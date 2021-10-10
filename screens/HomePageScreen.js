@@ -49,7 +49,7 @@ function HomePageScreen({ navigation }) {
                   movie_genre: "comedy",
                   isStudent: false,
                   university: "University of Mumbai",
-                  Hobbies: "1010100",
+                  Hobbies: "10000010101011010010100010",
                 },
               })
             }

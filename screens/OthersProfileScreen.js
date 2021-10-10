@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
     padding: 30,
     position: "absolute",
     top: 25,
+    marginLeft: 20,
   },
   userName: {
     fontSize: 28,

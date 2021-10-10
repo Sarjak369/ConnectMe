@@ -2,6 +2,35 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import AddConnectionsScreen from "./AddConnectionsScreen";
 
+const userHobbies = [
+  "music",
+  "sports",
+  "reading",
+  "studying",
+  "engineering",
+  "fitness",
+  "gardening",
+  "painting",
+  "martial arts",
+  "hiking",
+  "gaming",
+  "coding",
+  "cooking",
+  "eating",
+  "acting",
+  "photography",
+  "sweing",
+  "dancing",
+  "birdwatching",
+  "sleeping",
+  "nail art",
+  "caligraphy",
+  "puzzles",
+  "writing",
+  "journaling",
+  "listening to podcasts",
+];
+
 export default class MyProfileScreen extends Component {
   render() {
     return (
@@ -15,17 +44,32 @@ export default class MyProfileScreen extends Component {
           <View style={styles.bodyContent}>
             <Text style={styles.name}>{this.props.route.params.name}</Text>
             <Text style={styles.info}>
-              {this.props.route.params.email}, {this.props.route.params.age},{" "}
-              {this.props.route.params.gender}
+              Email: {this.props.route.params.email}
+            </Text>
+            <Text style={styles.info}>Age: {this.props.route.params.age}</Text>
+            <Text style={styles.info}>
+              Gender: {this.props.route.params.gender}
             </Text>
 
-            <Text style={styles.description}>
+            {/* <Text style={styles.description}>
               Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum
               electram expetendis, omittam deseruisse consequuntur ius an,
+            </Text> */}
+            <Text style={styles.description}>
+              {userHobbies.map((h, index) => {
+                return this.props.route.params.Hobbies.charAt(index) == "1" ? (
+                  <Text>
+                    - {h}
+                    {"\n"}
+                  </Text>
+                ) : (
+                  <Text></Text>
+                );
+              })}
             </Text>
-            <TouchableOpacity style={styles.buttonContainer}>
+            {/* <TouchableOpacity style={styles.buttonContainer}>
               <Text style={styles.buttonContainerText}>Hobbies</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity style={styles.buttonContainer}>
               <Text style={styles.buttonContainerText}>Connect</Text>
             </TouchableOpacity>
@@ -44,7 +88,7 @@ const styles = StyleSheet.create({
   header: {
     // backgroundColor: "#00BFFF",
     backgroundColor: "#003f5c",
-    height: 200,
+    height: 50,
   },
   avatar: {
     width: 130,
@@ -55,28 +99,32 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignSelf: "center",
     position: "absolute",
-    marginTop: 130,
+    marginTop: 75,
   },
-  name: {
-    fontSize: 22,
-    color: "#FFFFFF",
-    fontWeight: "600",
-  },
+  // name: {
+  //   fontSize: 22,
+  //   color: "#FFFFFF",
+  //   fontWeight: "600",
+  // },
   body: {
     marginTop: 40,
   },
   bodyContent: {
     flex: 1,
+    justifyContent: "center",
     alignItems: "center",
     padding: 30,
     position: "absolute",
     top: 25,
+    marginLeft: 35,
   },
   name: {
     fontSize: 28,
     // color: "#696969",
     color: "#fb5b5a",
     fontWeight: "600",
+    marginTop: 75,
+    // marginLeft: 70,
   },
   info: {
     fontSize: 16,
